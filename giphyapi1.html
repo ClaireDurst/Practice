@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Giphy</title>
+</head>
+
+<body>
+  <!-- Retrieved data will be dumped here -->
+  <button data-animal="cat">meow</button>
+  <button data-animal="dog">woof</button>
+  <button data-animal="bird">chirp</button>
+  <div id="gifs-appear-here">
+  </div>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript">
+    // This is our API key
+    var APIKey = "5c281ffd50774151bbfaf5dc85b25558";
+
+    // Here we are building the URL we need to query the database
+    var queryURL = "http://api.giphy.com/v1/gifs/search?" +
+      "q=cow&&limit=5&api_key=" + APIKey;
+
+    // Here we run our AJAX call to the OpenWeatherMap API
+    $.ajax({
+        url: queryURL,
+        method: "GET"
+      })
+      // We store all of the retrieved data inside of an object called "response"
+      .done(function(response) {
+
+        // Log the queryURL
+        console.log(queryURL);
+
+        // Log the resulting object
+        console.log(response);
+
+        // Transfer content to HTML
+       
+        $(".url").html("URL: " + response.data.url);
+        
+        // Log the data in the console as well
+       // console.log("URL: " + response.data.url);
+        
+      });
+  </script>
+</body>
+
+</html>
